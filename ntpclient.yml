@@ -10,6 +10,7 @@
       dest: /etc/systemd/timesyncd.conf
     notify:
     - set-ntp-true
+    - set-timezone
     - restart timesyncd
   - name: write timezone
     template:
