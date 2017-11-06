@@ -9,10 +9,9 @@
       src: timesyncd.conf.j2
       dest: /etc/systemd/timesyncd.conf
     notify:
+	- set-ntp-true
     - restart timesyncd
     - restart timedated
-  - name: set ntp client to true
-    shell: /usr/bin/timedatectl set-ntp true
   - name: ensure systemd-timesyncd is running
     service:
       name: systemd-timesyncd
@@ -30,5 +29,7 @@
       service:
         name: systemd-timedated
         state: restarted
+    - name: set-ntp-true
+      shell: /usr/bin/timedatectl set-ntp true
 
 
