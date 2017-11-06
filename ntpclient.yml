@@ -2,7 +2,7 @@
 - hosts: mi-pi
   vars:
     ntp_server: 10.15.1.250
-  remote_user: root
+  become: yes
   tasks:
   - name: write the timesyncd config file
     template:
