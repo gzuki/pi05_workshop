@@ -26,5 +26,7 @@
         state: restarted
     - name: set-ntp-true
       shell: /usr/bin/timedatectl set-ntp true
+    - name: set-timezone
+      shell: /usr/bin/timedatectl set-timezone Europe/Berlin
 
 
