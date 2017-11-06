@@ -11,6 +11,10 @@
     notify:
     - set-ntp-true
     - restart timesyncd
+  - name: write timezone
+    template:
+      src: timezone.j2
+      dest: /etc/timezone
   - name: ensure systemd-timesyncd is running
     service:
       name: systemd-timesyncd
