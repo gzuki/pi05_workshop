@@ -15,10 +15,6 @@
     service:
       name: systemd-timesyncd
       state: started
-  - name: ensure systemd-timedated is running
-    service:
-      name: systemd-timedated
-      state: started
   handlers:
     - name: restart timesyncd
       service:
