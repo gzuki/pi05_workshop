@@ -11,7 +11,6 @@
     notify:
     - set-ntp-true
     - restart timesyncd
-    - restart timedated
   - name: ensure systemd-timesyncd is running
     service:
       name: systemd-timesyncd
@@ -24,10 +23,6 @@
     - name: restart timesyncd
       service:
         name: systemd-timesyncd
-        state: restarted
-    - name: restart timedated
-      service:
-        name: systemd-timedated
         state: restarted
     - name: set-ntp-true
       shell: /usr/bin/timedatectl set-ntp true
