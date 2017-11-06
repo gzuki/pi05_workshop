@@ -1,0 +1,34 @@
+---
+- hosts: mi-pi
+  vars:
+    ntp_server: 10.15.1.250
+  remote_user: root
+  tasks:
+  - name: write the timesyncd config file
+    template:
+      src: timesyncd.conf.j2
+      dest: /etc/systemd/timesyncd.conf
+    notify:
+    - restart timesyncd
+    - restart timedated
+  - name: set ntp client to true
+    shell: /usr/bin/timedatectl set-ntp true
+  - name: ensure systemd-timesyncd is running
+    service:
+      name: systemd-timesyncd
+      state: started
+  - name: ensure systemd-timedated is running
+    service:
+      name: systemd-timedated
+      state: started
+  handlers:
+    - name: restart timesyncd
+      service:
+        name: systemd-timesyncd
+        state: restarted
+    - name: restart timedated
+      service:
+        name: systemd-timedated
+        state: restarted
+
+
