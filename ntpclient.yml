@@ -9,7 +9,7 @@
       src: timesyncd.conf.j2
       dest: /etc/systemd/timesyncd.conf
     notify:
-	- set-ntp-true
+    - set-ntp-true
     - restart timesyncd
     - restart timedated
   - name: ensure systemd-timesyncd is running
